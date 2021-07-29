@@ -7,7 +7,7 @@ int main()
     pid_t ID,PID;
     PID=getpid();
     printf("Process ID : %d\n",getpid());
-    ID=vfork();
+    ID=fork();
     if(PID==getpid())
     {
     printf("parent ID : %d\n",getpid());
