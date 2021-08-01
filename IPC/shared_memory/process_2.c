@@ -1,3 +1,4 @@
+
 #include <sys/mman.h>
 #include <sys/stat.h>
 #include <fcntl.h>   
@@ -6,24 +7,29 @@
 
 #include <fcntl.h>    
 #include <sys/stat.h> 
-#include <semaphore.h>
 
-int *count;
+#include<string.h>
+
+char *count;
+unsigned char buff[64];
+ssize_t readq;
 
 int main()
 {
-    int shmd;
+    int shmd; //discriptor 
     
-    shmd=shm_open("/di",O_RDWR | O_CREAT,S_IRWXU);
-    ftruncate(shmd,sizeof(int));
+    shmd=shm_open("/vi",O_RDWR | O_CREAT,S_IRWXU);
+    ftruncate(shmd,sizeof(buff));
 
-    count=(int*)mmap(NULL,sizeof(int),PROT_READ | PROT_WRITE,MAP_SHARED,shmd,0);
+    count=(char*)mmap(NULL,sizeof(int),PROT_READ | PROT_WRITE,MAP_SHARED,shmd,0); //map memory 
     
-    while(1)
-    {
-        printf("DEC : %d\n",*count);
-        sleep(1);
+
+        printf("string : %s\n",count);
+       // readq=read(shmd,buff,sizeof(buff));
+        strcpy(buff,count);
+    
+        printf("length of msg : %ld\n",strlen(buff));
+
               
-    }
     return 0;
 }

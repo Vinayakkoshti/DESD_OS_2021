@@ -6,8 +6,8 @@
 #include<stdlib.h>
 #include<string.h>
 
-//printf is buffered so systeam call will work untill buffer is flushed so by
-// using \n in printf or using fflush function we flush buffer
+// printf have buffer of 1024 when it flushed after that it prints and in wirte system call no any buffer
+//so it print quickly use \n in printf to flush for demo try : printf without "\n" before system call 
 
 int main()
 {
@@ -35,13 +35,13 @@ int main()
        
 	printf("Enter data to store in file\n");
 
-        int count;
+        ssize_t count; // opec data type as for read
        
       
       //read is system call
       count = read(0,buff,7);//read data from standard input and save to buff array
         // here 0 means stdin standard input (console)
-      printf("Count : %d\n",count);//read return how many byte was readed
+      printf("Count : %ld\n",count);//read return how many byte was readed
       
       printf("buff : %s\n",buff);//printf is library call
 
