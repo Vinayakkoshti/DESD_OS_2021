@@ -1,0 +1,7 @@
+algo
+1)create share memory 
+2)write mssage on buffer
+3)copy msg from buffer to shared memory
+4)in second process use same share memory to access data
+5)get share memory data to buffer 
+5)printf that buff and length of msg
